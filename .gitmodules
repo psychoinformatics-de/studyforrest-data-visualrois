@@ -1,0 +1,9 @@
+[submodule "src/phase2"]
+	path = src/phase2
+	url = ../phase2
+[submodule "src/tnt"]
+	path = src/tnt
+	url = ../tnt
+[submodule "src/aligned"]
+	path = src/aligned
+	url = ../aligned
