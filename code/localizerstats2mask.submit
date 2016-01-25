@@ -1,0 +1,42 @@
+universe = vanilla
+output = condor_logs/$(CLUSTER).$(PROCESS).out
+error = condor_logs/$(CLUSTER).$(PROCESS).err
+log = condor_logs/$(CLUSTER).$(PROCESS).log
+getenv = True
+request_cpus = 1
+request_memory = 1000
+should_transfer_files = NO
+transfer_executable = False
+initialdir = /home/data/psyinf/forrest_gump/collection/visloc
+executable = code/localizerstats2mask.sh
+
+arguments = sub-01 dummy 99.9
+queue
+arguments = sub-02 dummy 99.9
+queue
+arguments = sub-03 dummy 99.9
+queue
+arguments = sub-04 dummy 99.9
+queue
+arguments = sub-05 dummy 99.9
+queue
+arguments = sub-06 dummy 99.9
+queue
+arguments = sub-09 dummy 99.9
+queue
+arguments = sub-10 dummy 99.9
+queue
+arguments = sub-14 dummy 99.9
+queue
+arguments = sub-15 dummy 99.9
+queue
+arguments = sub-16 dummy 99.9
+queue
+arguments = sub-17 dummy 99.9
+queue
+arguments = sub-18 dummy 99.9
+queue
+arguments = sub-19 dummy 99.9
+queue
+arguments = sub-20 dummy 99.9
+queue

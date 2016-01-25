@@ -1,0 +1,133 @@
+# auto-generate file (generate_1st_level_design.sh) -- do not modify!
+universe = vanilla
+output = condor_logs/$(CLUSTER).$(PROCESS).out
+error = condor_logs/$(CLUSTER).$(PROCESS).err
+log = condor_logs/$(CLUSTER).$(PROCESS).log
+getenv = True
+request_cpus = 1
+request_memory = 4000
+should_transfer_files = NO
+transfer_executable = False
+initialdir = /home/data/psyinf/forrest_gump/collection/visloc
+executable = $ENV(FSLDIR)/bin/feat
+
+arguments = sub-01/run-1_1st.fsf
+queue
+arguments = sub-01/run-2_1st.fsf
+queue
+arguments = sub-01/run-3_1st.fsf
+queue
+arguments = sub-01/run-4_1st.fsf
+queue
+arguments = sub-02/run-1_1st.fsf
+queue
+arguments = sub-02/run-2_1st.fsf
+queue
+arguments = sub-02/run-3_1st.fsf
+queue
+arguments = sub-02/run-4_1st.fsf
+queue
+arguments = sub-03/run-1_1st.fsf
+queue
+arguments = sub-03/run-2_1st.fsf
+queue
+arguments = sub-03/run-3_1st.fsf
+queue
+arguments = sub-03/run-4_1st.fsf
+queue
+arguments = sub-04/run-1_1st.fsf
+queue
+arguments = sub-04/run-2_1st.fsf
+queue
+arguments = sub-04/run-3_1st.fsf
+queue
+arguments = sub-04/run-4_1st.fsf
+queue
+arguments = sub-05/run-1_1st.fsf
+queue
+arguments = sub-05/run-2_1st.fsf
+queue
+arguments = sub-05/run-3_1st.fsf
+queue
+arguments = sub-05/run-4_1st.fsf
+queue
+arguments = sub-06/run-1_1st.fsf
+queue
+arguments = sub-06/run-2_1st.fsf
+queue
+arguments = sub-06/run-3_1st.fsf
+queue
+arguments = sub-06/run-4_1st.fsf
+queue
+arguments = sub-09/run-1_1st.fsf
+queue
+arguments = sub-09/run-2_1st.fsf
+queue
+arguments = sub-09/run-3_1st.fsf
+queue
+arguments = sub-09/run-4_1st.fsf
+queue
+arguments = sub-10/run-1_1st.fsf
+queue
+arguments = sub-10/run-2_1st.fsf
+queue
+arguments = sub-10/run-3_1st.fsf
+queue
+arguments = sub-10/run-4_1st.fsf
+queue
+arguments = sub-14/run-1_1st.fsf
+queue
+arguments = sub-14/run-2_1st.fsf
+queue
+arguments = sub-14/run-3_1st.fsf
+queue
+arguments = sub-14/run-4_1st.fsf
+queue
+arguments = sub-15/run-1_1st.fsf
+queue
+arguments = sub-15/run-2_1st.fsf
+queue
+arguments = sub-15/run-3_1st.fsf
+queue
+arguments = sub-15/run-4_1st.fsf
+queue
+arguments = sub-16/run-1_1st.fsf
+queue
+arguments = sub-16/run-2_1st.fsf
+queue
+arguments = sub-16/run-3_1st.fsf
+queue
+arguments = sub-16/run-4_1st.fsf
+queue
+arguments = sub-17/run-1_1st.fsf
+queue
+arguments = sub-17/run-2_1st.fsf
+queue
+arguments = sub-17/run-3_1st.fsf
+queue
+arguments = sub-17/run-4_1st.fsf
+queue
+arguments = sub-18/run-1_1st.fsf
+queue
+arguments = sub-18/run-2_1st.fsf
+queue
+arguments = sub-18/run-3_1st.fsf
+queue
+arguments = sub-18/run-4_1st.fsf
+queue
+arguments = sub-19/run-1_1st.fsf
+queue
+arguments = sub-19/run-2_1st.fsf
+queue
+arguments = sub-19/run-3_1st.fsf
+queue
+arguments = sub-19/run-4_1st.fsf
+queue
+arguments = sub-20/run-1_1st.fsf
+queue
+arguments = sub-20/run-2_1st.fsf
+queue
+arguments = sub-20/run-3_1st.fsf
+queue
+arguments = sub-20/run-4_1st.fsf
+queue

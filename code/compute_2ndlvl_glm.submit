@@ -1,0 +1,43 @@
+# auto-generate file (generate_2nd_level_design.sh) -- do not modify!
+universe = vanilla
+output = condor_logs/$(CLUSTER).$(PROCESS).out
+error = condor_logs/$(CLUSTER).$(PROCESS).err
+log = condor_logs/$(CLUSTER).$(PROCESS).log
+getenv = True
+request_cpus = 1
+request_memory = 2000
+should_transfer_files = NO
+transfer_executable = False
+initialdir = /home/data/psyinf/forrest_gump/collection/visloc
+executable = $ENV(FSLDIR)/bin/feat
+
+arguments = sub-01/2nd_z164.fsf
+queue
+arguments = sub-02/2nd_z164.fsf
+queue
+arguments = sub-03/2nd_z164.fsf
+queue
+arguments = sub-04/2nd_z164.fsf
+queue
+arguments = sub-05/2nd_z164.fsf
+queue
+arguments = sub-06/2nd_z164.fsf
+queue
+arguments = sub-09/2nd_z164.fsf
+queue
+arguments = sub-10/2nd_z164.fsf
+queue
+arguments = sub-14/2nd_z164.fsf
+queue
+arguments = sub-15/2nd_z164.fsf
+queue
+arguments = sub-16/2nd_z164.fsf
+queue
+arguments = sub-17/2nd_z164.fsf
+queue
+arguments = sub-18/2nd_z164.fsf
+queue
+arguments = sub-19/2nd_z164.fsf
+queue
+arguments = sub-20/2nd_z164.fsf
+queue
