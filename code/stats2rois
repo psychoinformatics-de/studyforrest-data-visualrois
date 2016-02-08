@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+import os
 from tempfile import mkdtemp
 from os.path import join as _opj
 from os.path import abspath
@@ -8,8 +9,16 @@ from shutil import rmtree
 from configparser import SafeConfigParser
 from subprocess import check_call
 import nibabel as nb
-from scipy.ndimage import label
+from scipy.ndimage import label, center_of_mass, maximum_position
 import numpy as np
+
+
+def ijk2xyz(ijk, aff):
+    tmp = np.ones(4, dtype=ijk.dtype)
+    tmp[:3] = ijk
+    tmp = np.dot(aff, tmp)
+    return tmp[:3]
+
 
 cfg = SafeConfigParser()
 cfg.read(_opj('code', 'stats2rois.cfg'))
@@ -22,6 +31,8 @@ if len(sys.argv) > 2:
     mode = 'indi'
     rois = sys.argv[2:]
 
+if not os.path.exists(_opj(subj_code, 'rois')):
+    os.makedirs(_opj(subj_code, 'rois'))
 
 # encode ROI IDs as powers of 2
 roi_ids = {
@@ -77,9 +88,9 @@ for roi in rois:
     # doesn't do casing properly
     roi = roi[:-3] + roi[-3:].upper()
     print(roi)
-    #wdir = mkdtemp(suffix='_stats2roi_%s' % subj_code)
-    wdir = '/tmp/stats2rois'
-    print(wdir)
+    wdir = mkdtemp(suffix='_stats2roi_%s' % subj_code)
+    #wdir = '/tmp/stats2rois'
+    #print(wdir)
     # get particular setting for this ROI
     info = cfg.get(subj_code, roi).split()
     cope = int(info[0])
@@ -97,10 +108,10 @@ for roi in rois:
     # find clusters
     zstat_img = nb.load(zstats_fname)
     clusters, nclusters = label(zstat_img.get_data() > zthresh)
-    print('Cluster sizes:', {i: np.sum(clusters == i) for i in range(1, nclusters + 1)})
+    #print('Cluster sizes:', {i: np.sum(clusters == i) for i in range(1, nclusters + 1)})
 
     # make ROI mask
-    roi_fname = _opj(wdir, '%s.nii.gz' % roi)
+    roi_fname = _opj(subj_code, 'rois', '%s.nii.gz' % roi)
     roi_vol = np.zeros(clusters.shape, dtype=np.bool)
     for cli in cluster_idx:
         roi_vol += clusters == cli
@@ -109,8 +120,47 @@ for roi in rois:
         roisummary_hdr = zstat_img.get_header()
     roisummary_vol += roi_vol.astype(int) * roi_ids[roi]
 
-    nb.save(nb.Nifti1Image(roi_vol.astype('int16'), zstat_img.get_affine()),
-            roi_fname)
+    # save the ROI mask file
+    roi_img = nb.Nifti1Image(roi_vol.astype('int16'), zstat_img.get_affine())
+    nb.save(roi_img, roi_fname)
+    with open(_opj(subj_code, 'rois', '%s_info.txt' % roi), 'w') as infofile:
+        # native space info
+        infofile.write("nvoxels (native): %i\n" % np.sum(roi_vol > 0))
+        infofile.write(
+            "volume (native cm^3): %f\n"
+            % (np.sum(roi_vol > 0) * np.prod(roi_img.get_header().get_zooms()) / 1000.))
+        roi_stats = zstat_img.get_data()[roi_vol > 0]
+        infofile.write(
+            'Z-stats (min, mean, median, max): %.2f, %.2f, %.2f, %.2f\n'
+            % (roi_stats.min(), roi_stats.mean(), np.median(roi_stats), roi_stats.max()))
+        roi_stats = zstat_img.get_data() * (roi_vol > 0)
+        infofile.write("peak Z (native IJK): %i, %i, %i\n" % maximum_position(roi_stats))
+        infofile.write("CoM (native IJK): %i, %i, %i\n" % center_of_mass(roi_stats))
+
+        # MNI space info
+        roi_stats_fname = _opj(wdir, 'roi_stats.nii.gz')
+        nb.save(nb.Nifti1Image(roi_stats, zstat_img.get_affine()), roi_stats_fname)
+        grp_stats_fname = _opj(wdir, 'grp_stats.nii.gz')
+        check_call([
+            'applywarp',
+            '--in=%s' % roi_stats_fname,
+            '--ref=%s' % tmpl_fname,
+            '--warp=%s' % tmplwarp_fname,
+            '--interp=trilinear',
+            '--out=%s' % grp_stats_fname])
+        grp_stats_img = nb.load(grp_stats_fname)
+        infofile.write(
+            "peak Z (MNI mm): %.2f, %.1f, %.1f\n"
+            % tuple(
+                ijk2xyz(
+                    np.array(maximum_position(grp_stats_img.get_data())),
+                    grp_stats_img.get_affine())))
+        infofile.write(
+            "CoM (MNI mm): %.2f, %.1f, %.1f\n"
+            % tuple(
+                ijk2xyz(
+                    np.array(center_of_mass(grp_stats_img.get_data())),
+                    grp_stats_img.get_affine())))
 
     native_clusters_fname = _opj(wdir, 'native_clusters.nii.gz')
     nb.save(zstat_img, _opj(wdir, 'stats.nii.gz'))
@@ -119,8 +169,6 @@ for roi in rois:
     nb.save(nb.Nifti1Image(clusters, zstat_img.get_affine()),
             native_clusters_fname)
 
-
-    print(nclusters)
     #check_call(
     #    ['easythresh', zstats_fname, mask_fname, '%s' % zthresh, '%s' % pthresh,
     #     mask_fname, 'stats2rois'],
@@ -162,28 +210,26 @@ for roi in rois:
             'Greyscale',
         ])
 
-    #rmtree(wdir)
+    rmtree(wdir)
 
 if mode == 'indi':
     sys.exit(0)
 
-roisummary_fname = 'roisummary.nii.gz'
-grp_roisummary_fname = 'grp_roisummary.nii.gz'
+roisummary_fname = _opj(subj_code, 'rois', 'summary.nii.gz')
 nb.save(nb.Nifti1Image(roisummary_vol, roisummary_hdr.get_best_affine()),
         roisummary_fname)
-check_call([
-    'applywarp',
-    '--in=%s' % roisummary_fname,
-    '--ref=%s' % tmpl_fname,
-    '--warp=%s' % tmplwarp_fname,
-    '--interp=nn',
-    '--out=%s' % grp_roisummary_fname])
-check_call([
-    'fslview',
-    '../tnt/templates/grpbold3Tp2/from_mni/MNI152_T1_1mm.nii.gz',
-    grp_roisummary_fname,
-    '-l',
-    'Random-Rainbow',
-])
-
-
+#grp_roisummary_fname = 'grp_roisummary.nii.gz'
+#check_call([
+#    'applywarp',
+#    '--in=%s' % roisummary_fname,
+#    '--ref=%s' % tmpl_fname,
+#    '--warp=%s' % tmplwarp_fname,
+#    '--interp=nn',
+#    '--out=%s' % grp_roisummary_fname])
+#check_call([
+#    'fslview',
+#    '../tnt/templates/grpbold3Tp2/from_mni/MNI152_T1_1mm.nii.gz',
+#    grp_roisummary_fname,
+#    '-l',
+#    'Random-Rainbow',
+#])
