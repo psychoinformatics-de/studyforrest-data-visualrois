@@ -30,7 +30,7 @@ set fmri(featwatcher_yn) 0
 set fmri(sscleanup_yn) 0
 
 # Output directory
-set fmri(outputdir) "/home/data/psyinf/forrest_gump/collection/visloc/###SUB###/2ndlvl_z164"
+set fmri(outputdir) "/home/data/psyinf/forrest_gump/collection/visloc/###SUB###/2ndlvl_z164_nomc"
 
 # TR(s)
 set fmri(tr) 3

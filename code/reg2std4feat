@@ -36,14 +36,14 @@ for featdir in $@; do
 	if [ "$inspace" != "$stdspace" ]; then
 		xfmdir="$tntsubdir/$inspace/in_$stdspace"
 		# check that we have the xfm info
-		[ $(imtest "$xfmdir/brain") -eq 1 ] && : || echo "cannot find transformation"
+		[ $(imtest "$xfmdir/head") -eq 1 ] && : || echo "cannot find transformation"
 		if [ -e "$xfmdir/xfm_12dof.mat" ]; then
 			tmpl2std_mat="$xfmdir/xfm_12dof.mat"
 		fi
 		if [ $(imtest "$xfmdir/subj2tmpl_warp") -eq 1 ]; then
 			tmpl2std_warp="$xfmdir/subj2tmpl_warp"
 		fi
-		imcp "$xfmdir/brain" "$regdir/standard"
+		imcp "$xfmdir/head" "$regdir/standard"
 	else
 		# we stay in the 
 		imcp "$tntsubdir/$inspace/brain" "$regdir/standard"

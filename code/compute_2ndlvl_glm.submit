@@ -11,33 +11,33 @@ transfer_executable = False
 initialdir = /home/data/psyinf/forrest_gump/collection/visloc
 executable = $ENV(FSLDIR)/bin/feat
 
-arguments = sub-01/2nd_z164.fsf
+arguments = sub-01/2nd_z164_nomc.fsf
 queue
-arguments = sub-02/2nd_z164.fsf
+arguments = sub-02/2nd_z164_nomc.fsf
 queue
-arguments = sub-03/2nd_z164.fsf
+arguments = sub-03/2nd_z164_nomc.fsf
 queue
-arguments = sub-04/2nd_z164.fsf
+arguments = sub-04/2nd_z164_nomc.fsf
 queue
-arguments = sub-05/2nd_z164.fsf
+arguments = sub-05/2nd_z164_nomc.fsf
 queue
-arguments = sub-06/2nd_z164.fsf
+arguments = sub-06/2nd_z164_nomc.fsf
 queue
-arguments = sub-09/2nd_z164.fsf
+arguments = sub-09/2nd_z164_nomc.fsf
 queue
-arguments = sub-10/2nd_z164.fsf
+arguments = sub-10/2nd_z164_nomc.fsf
 queue
-arguments = sub-14/2nd_z164.fsf
+arguments = sub-14/2nd_z164_nomc.fsf
 queue
-arguments = sub-15/2nd_z164.fsf
+arguments = sub-15/2nd_z164_nomc.fsf
 queue
-arguments = sub-16/2nd_z164.fsf
+arguments = sub-16/2nd_z164_nomc.fsf
 queue
-arguments = sub-17/2nd_z164.fsf
+arguments = sub-17/2nd_z164_nomc.fsf
 queue
-arguments = sub-18/2nd_z164.fsf
+arguments = sub-18/2nd_z164_nomc.fsf
 queue
-arguments = sub-19/2nd_z164.fsf
+arguments = sub-19/2nd_z164_nomc.fsf
 queue
-arguments = sub-20/2nd_z164.fsf
+arguments = sub-20/2nd_z164_nomc.fsf
 queue

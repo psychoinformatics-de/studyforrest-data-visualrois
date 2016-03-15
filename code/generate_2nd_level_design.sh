@@ -19,7 +19,7 @@ executable = \$ENV(FSLDIR)/bin/feat
 
 EOT
 
-label="2nd_z164"
+label="2nd_z164_nomc"
 
 for sub in sub-*; do
   subid=$(echo "$sub" | cut -d '-' -f2-)
