@@ -30,7 +30,7 @@ set fmri(featwatcher_yn) 0
 set fmri(sscleanup_yn) 0
 
 # Output directory
-set fmri(outputdir) "/home/data/psyinf/forrest_gump/collection/visloc/###SUB###/2ndlvl_z164_nomc"
+set fmri(outputdir) "/home/data/psyinf/forrest_gump/collection/visloc/###SUB###/2ndlvl"
 
 # TR(s)
 set fmri(tr) 3
@@ -260,7 +260,7 @@ set fmri(regstandard_nonlinear_warpres) 10
 set fmri(paradigm_hp) 100
 
 # Number of lower-level copes feeding into higher-level analysis
-set fmri(ncopeinputs) 10
+set fmri(ncopeinputs) 15
 
 # Use lower-level cope 1 for higher-level analysis
 set fmri(copeinput.1) 1
@@ -291,6 +291,21 @@ set fmri(copeinput.9) 1
 
 # Use lower-level cope 10 for higher-level analysis
 set fmri(copeinput.10) 1
+
+# Use lower-level cope 11 for higher-level analysis
+set fmri(copeinput.11) 1
+
+# Use lower-level cope 12 for higher-level analysis
+set fmri(copeinput.12) 1
+
+# Use lower-level cope 13 for higher-level analysis
+set fmri(copeinput.13) 1
+
+# Use lower-level cope 14 for higher-level analysis
+set fmri(copeinput.14) 1
+
+# Use lower-level cope 15 for higher-level analysis
+set fmri(copeinput.15) 1
 
 # 4D AVW data or FEAT directory (1)
 set feat_files(1) "/home/data/psyinf/forrest_gump/collection/visloc/###SUB###/run-1.feat"
