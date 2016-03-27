@@ -1,0 +1,133 @@
+universe = vanilla
+output = condor_logs/$(CLUSTER).$(PROCESS).out
+error = condor_logs/$(CLUSTER).$(PROCESS).err
+log = condor_logs/$(CLUSTER).$(PROCESS).log
+getenv = True
+request_cpus = 1
+request_memory = 2000
+should_transfer_files = NO
+transfer_executable = False
+environment = "OMP_NUM_THREADS=1"
+initialdir = /home/data/psyinf/forrest_gump/collection/visloc
+executable = /usr/lib/afni/bin/3dDespike
+
+arguments = -prefix sub-01/run-1_despiked_bold.nii.gz src/aligned/sub-01/in_bold3Tp2/sub-01_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-01/run-2_despiked_bold.nii.gz src/aligned/sub-01/in_bold3Tp2/sub-01_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-01/run-3_despiked_bold.nii.gz src/aligned/sub-01/in_bold3Tp2/sub-01_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-01/run-4_despiked_bold.nii.gz src/aligned/sub-01/in_bold3Tp2/sub-01_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-02/run-1_despiked_bold.nii.gz src/aligned/sub-02/in_bold3Tp2/sub-02_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-02/run-2_despiked_bold.nii.gz src/aligned/sub-02/in_bold3Tp2/sub-02_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-02/run-3_despiked_bold.nii.gz src/aligned/sub-02/in_bold3Tp2/sub-02_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-02/run-4_despiked_bold.nii.gz src/aligned/sub-02/in_bold3Tp2/sub-02_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-03/run-1_despiked_bold.nii.gz src/aligned/sub-03/in_bold3Tp2/sub-03_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-03/run-2_despiked_bold.nii.gz src/aligned/sub-03/in_bold3Tp2/sub-03_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-03/run-3_despiked_bold.nii.gz src/aligned/sub-03/in_bold3Tp2/sub-03_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-03/run-4_despiked_bold.nii.gz src/aligned/sub-03/in_bold3Tp2/sub-03_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-04/run-1_despiked_bold.nii.gz src/aligned/sub-04/in_bold3Tp2/sub-04_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-04/run-2_despiked_bold.nii.gz src/aligned/sub-04/in_bold3Tp2/sub-04_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-04/run-3_despiked_bold.nii.gz src/aligned/sub-04/in_bold3Tp2/sub-04_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-04/run-4_despiked_bold.nii.gz src/aligned/sub-04/in_bold3Tp2/sub-04_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-05/run-1_despiked_bold.nii.gz src/aligned/sub-05/in_bold3Tp2/sub-05_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-05/run-2_despiked_bold.nii.gz src/aligned/sub-05/in_bold3Tp2/sub-05_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-05/run-3_despiked_bold.nii.gz src/aligned/sub-05/in_bold3Tp2/sub-05_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-05/run-4_despiked_bold.nii.gz src/aligned/sub-05/in_bold3Tp2/sub-05_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-06/run-1_despiked_bold.nii.gz src/aligned/sub-06/in_bold3Tp2/sub-06_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-06/run-2_despiked_bold.nii.gz src/aligned/sub-06/in_bold3Tp2/sub-06_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-06/run-3_despiked_bold.nii.gz src/aligned/sub-06/in_bold3Tp2/sub-06_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-06/run-4_despiked_bold.nii.gz src/aligned/sub-06/in_bold3Tp2/sub-06_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-09/run-1_despiked_bold.nii.gz src/aligned/sub-09/in_bold3Tp2/sub-09_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-09/run-2_despiked_bold.nii.gz src/aligned/sub-09/in_bold3Tp2/sub-09_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-09/run-3_despiked_bold.nii.gz src/aligned/sub-09/in_bold3Tp2/sub-09_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-09/run-4_despiked_bold.nii.gz src/aligned/sub-09/in_bold3Tp2/sub-09_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-10/run-1_despiked_bold.nii.gz src/aligned/sub-10/in_bold3Tp2/sub-10_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-10/run-2_despiked_bold.nii.gz src/aligned/sub-10/in_bold3Tp2/sub-10_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-10/run-3_despiked_bold.nii.gz src/aligned/sub-10/in_bold3Tp2/sub-10_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-10/run-4_despiked_bold.nii.gz src/aligned/sub-10/in_bold3Tp2/sub-10_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-14/run-1_despiked_bold.nii.gz src/aligned/sub-14/in_bold3Tp2/sub-14_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-14/run-2_despiked_bold.nii.gz src/aligned/sub-14/in_bold3Tp2/sub-14_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-14/run-3_despiked_bold.nii.gz src/aligned/sub-14/in_bold3Tp2/sub-14_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-14/run-4_despiked_bold.nii.gz src/aligned/sub-14/in_bold3Tp2/sub-14_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-15/run-1_despiked_bold.nii.gz src/aligned/sub-15/in_bold3Tp2/sub-15_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-15/run-2_despiked_bold.nii.gz src/aligned/sub-15/in_bold3Tp2/sub-15_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-15/run-3_despiked_bold.nii.gz src/aligned/sub-15/in_bold3Tp2/sub-15_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-15/run-4_despiked_bold.nii.gz src/aligned/sub-15/in_bold3Tp2/sub-15_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-16/run-1_despiked_bold.nii.gz src/aligned/sub-16/in_bold3Tp2/sub-16_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-16/run-2_despiked_bold.nii.gz src/aligned/sub-16/in_bold3Tp2/sub-16_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-16/run-3_despiked_bold.nii.gz src/aligned/sub-16/in_bold3Tp2/sub-16_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-16/run-4_despiked_bold.nii.gz src/aligned/sub-16/in_bold3Tp2/sub-16_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-17/run-1_despiked_bold.nii.gz src/aligned/sub-17/in_bold3Tp2/sub-17_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-17/run-2_despiked_bold.nii.gz src/aligned/sub-17/in_bold3Tp2/sub-17_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-17/run-3_despiked_bold.nii.gz src/aligned/sub-17/in_bold3Tp2/sub-17_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-17/run-4_despiked_bold.nii.gz src/aligned/sub-17/in_bold3Tp2/sub-17_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-18/run-1_despiked_bold.nii.gz src/aligned/sub-18/in_bold3Tp2/sub-18_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-18/run-2_despiked_bold.nii.gz src/aligned/sub-18/in_bold3Tp2/sub-18_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-18/run-3_despiked_bold.nii.gz src/aligned/sub-18/in_bold3Tp2/sub-18_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-18/run-4_despiked_bold.nii.gz src/aligned/sub-18/in_bold3Tp2/sub-18_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-19/run-1_despiked_bold.nii.gz src/aligned/sub-19/in_bold3Tp2/sub-19_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-19/run-2_despiked_bold.nii.gz src/aligned/sub-19/in_bold3Tp2/sub-19_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-19/run-3_despiked_bold.nii.gz src/aligned/sub-19/in_bold3Tp2/sub-19_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-19/run-4_despiked_bold.nii.gz src/aligned/sub-19/in_bold3Tp2/sub-19_task-objectcategories_run-4_bold.nii.gz
+queue
+arguments = -prefix sub-20/run-1_despiked_bold.nii.gz src/aligned/sub-20/in_bold3Tp2/sub-20_task-objectcategories_run-1_bold.nii.gz
+queue
+arguments = -prefix sub-20/run-2_despiked_bold.nii.gz src/aligned/sub-20/in_bold3Tp2/sub-20_task-objectcategories_run-2_bold.nii.gz
+queue
+arguments = -prefix sub-20/run-3_despiked_bold.nii.gz src/aligned/sub-20/in_bold3Tp2/sub-20_task-objectcategories_run-3_bold.nii.gz
+queue
+arguments = -prefix sub-20/run-4_despiked_bold.nii.gz src/aligned/sub-20/in_bold3Tp2/sub-20_task-objectcategories_run-4_bold.nii.gz
+queue
