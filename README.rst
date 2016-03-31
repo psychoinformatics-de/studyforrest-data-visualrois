@@ -18,7 +18,7 @@ following visual areas were localized:
 
 More information on the procedure and the results can be found in:
 
-     Ayan~Sengupta, Falko R. Kaule, J. Swaroop Guntupalli,
+     Ayan Sengupta, Falko R. Kaule, J. Swaroop Guntupalli,
      Michael B. Hoffmann, Christian Häusler, Jörg Stadler,
      Michael Hanke. An extension of the studyforrest
      dataset for vision research. (submitted for publication)
