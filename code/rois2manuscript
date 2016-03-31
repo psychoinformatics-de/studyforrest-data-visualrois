@@ -1,0 +1,134 @@
+#!/usr/bin/python3
+
+import sys
+import os
+from tempfile import mkdtemp
+from os.path import join as _opj
+from os.path import abspath
+from shutil import rmtree
+from configparser import SafeConfigParser
+from subprocess import check_call
+import nibabel as nb
+from scipy.ndimage import label, center_of_mass, maximum_position
+import numpy as np
+
+
+def ijk2xyz(ijk, aff):
+    tmp = np.ones(4, dtype=ijk.dtype)
+    tmp[:3] = ijk
+    tmp = np.dot(aff, tmp)
+    return tmp[:3]
+
+
+cfg = SafeConfigParser()
+cfg.read(_opj('code', 'stats2rois.cfg'))
+
+#if not os.path.exists(_opj(subj_code, 'rois')):
+#    os.makedirs(_opj(subj_code, 'rois'))
+
+# encode ROI IDs as powers of 2
+roi_ids = {
+    'rFFA':  int('00000000001', base=2),  # 1
+    'rOFA':  int('00000000010', base=2),  # 2
+    'rPPA':  int('00000000100', base=2),  # 4
+    'rEBA':  int('00000001000', base=2),  # 8
+    'rLOC':  int('00000010000', base=2),  # 16
+    'lFFA':  int('00000100000', base=2),  # 32
+    'lOFA':  int('00001000000', base=2),  # 64
+    'lPPA':  int('00010000000', base=2),  # 128
+    'lEBA':  int('00100000000', base=2),  # 256
+    'lLOC':  int('01000000000', base=2),  # 512
+    'VIS':   int('10000000000', base=2),  # 1024
+}
+
+def describe_roi(sub, roi, contrast, cluster):
+    res = {}
+    mask_fname = '%s_%i_mask.nii.gz' % (roi, cluster)
+    mask_fullpath = _opj(sub, 'rois', mask_fname)
+    mask_img = nb.load(mask_fullpath)
+    stats_img = nb.load(os.path.join(
+        sub,
+        '2ndlvl.gfeat',
+        'cope%i.feat' % contrast,
+        'stats',
+        'zstat1.nii.gz'))
+    mask_arr = mask_img.get_data() > 0
+    stats = stats_img.get_data()[mask_arr]
+    res['meanZ'] = stats.mean()
+    res['maxZ'] = stats.max()
+    res['medianZ'] = np.median(stats)
+    res['nvoxels'] = np.sum(mask_arr)
+    res['volume'] = np.sum(mask_arr) * np.prod(mask_img.get_header().get_zooms()) / 1000.
+
+    # get info in MNI space
+    tmplwarp_fname = abspath(_opj(
+        'src',
+        'tnt',
+        sub,
+        'bold3Tp2',
+        'in_grpbold3Tp2',
+        'subj2tmpl_warp.nii.gz'))
+
+    tmpl_fname = abspath(_opj(
+        'src',
+        'tnt',
+        'templates',
+        'grpbold3Tp2',
+        'brain.nii.gz'))
+
+    wdir = mkdtemp(suffix='_roi2manuscript_%s' % sub)
+    mni_mask_fname = _opj(wdir, 'mni_mask.nii.gz')
+    check_call([
+        'applywarp',
+        '--in=%s' % mask_fullpath,
+        '--ref=%s' % tmpl_fname,
+        '--warp=%s' % tmplwarp_fname,
+        '--interp=nn',
+        '--out=%s' % mni_mask_fname])
+    mni_mask_img = nb.load(mni_mask_fname)
+    res['peakZ_MNI'] = tuple(ijk2xyz(
+        np.array(maximum_position(mni_mask_img.get_data())),
+        mni_mask_img.get_affine()))
+    res['CoM_MNI'] = tuple(ijk2xyz(
+        np.array(center_of_mass(mni_mask_img.get_data())),
+        mni_mask_img.get_affine()))
+
+    rmtree(wdir)
+    return res, mni_mask_img
+
+mni_affine = None
+roi_stats = {}
+
+for sub in cfg.sections():
+    for roi in cfg.options(sub):
+        if len(roi) > 3:
+            roi_label = '%s%s' % (roi[0], roi[1:].upper())
+        else:
+            roi_label = roi.upper()
+
+        cluster = cfg.get(sub, roi).split()
+        contrast = int(cluster[0])
+        if contrast in [2, 3, 4, 5, 6]:
+            contrast_label = 'strict'
+        elif contrast in [7, 8, 9]:
+            contrast_label = 'relaxed'
+        else:
+            contrast_label = 'simple'
+
+        thresh = float(cluster[1])
+        for clust in cluster[2:]:
+            p, mni_mask_img = describe_roi(sub, roi_label, contrast, int(clust))
+            if mni_affine is None:
+                mni_affine = mni_mask_img.get_affine()
+            if not roi_label in roi_stats:
+                roi_stats[roi_label] = mni_mask_img.get_data()
+            else:
+                roi_stats[roi_label] += mni_mask_img.get_data()
+            # TODO make contrast something better than a numerical ID
+            p.update(dict(sub=int(sub[4:]), roi=roi_label,
+                          contrast=contrast_label, thresh=thresh))
+            print('{roi} & {sub} & {thresh:.2f} & {meanZ:.2f} & {medianZ:.2f} & {maxZ:.2f} & {volume:.2f} & {nvoxels} & {peakZ_MNI[0]:.1f} & {peakZ_MNI[1]:.1f} & {peakZ_MNI[2]:.1f} & {CoM_MNI[0]:.1f} & {CoM_MNI[1]:.1f} & {CoM_MNI[2]:.1f} & {contrast} \\\\'.format(**p))
+
+for roi in roi_stats:
+    nb.save(nb.Nifti1Image(roi_stats[roi].astype('int16'), mni_affine),
+            '%s_overlap.nii.gz' % roi)
