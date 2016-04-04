@@ -18,10 +18,11 @@ following visual areas were localized:
 
 More information on the procedure and the results can be found in:
 
-     Ayan Sengupta, Falko R. Kaule, J. Swaroop Guntupalli,
-     Michael B. Hoffmann, Christian Häusler, Jörg Stadler,
-     Michael Hanke. An extension of the studyforrest
-     dataset for vision research. (submitted for publication)
+     Ayan Sengupta, Falko R. Kaule, J. Swaroop Guntupalli, Michael B. Hoffmann,
+     Christian Häusler, Jörg Stadler, Michael Hanke. `An extension of the
+     studyforrest dataset for vision research
+     <http://biorxiv.org/content/early/2016/03/31/046573>`_. (submitted for
+     publication)
 
 For further information about the project visit: http://studyforrest.org
 
