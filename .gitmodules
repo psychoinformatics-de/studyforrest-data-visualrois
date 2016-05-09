@@ -1,9 +1,9 @@
 [submodule "src/phase2"]
 	path = src/phase2
-	url = ../phase2
+	url = ../studyforrest-data-phase2
 [submodule "src/tnt"]
 	path = src/tnt
-	url = ../tnt
+	url = ../studyforrest-data-templatetransforms
 [submodule "src/aligned"]
 	path = src/aligned
-	url = ../aligned
+	url = ../studyforrest-data-aligned
