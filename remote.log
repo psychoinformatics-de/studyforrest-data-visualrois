@@ -1,7 +1,4 @@
- autoenable=true location=https://gin.g-node.org/studyforrest/visual-areas.git name=gin type=git timestamp=1619763266.175647837s
 9536f86d-eb34-42ed-8ffc-fafd63a2b87e autoenable=true location=http://psydata.ovgu.de/studyforrest/visualrois/.git name=mddatasrc type=git timestamp=1459405007.225384s
 db2e8480-0894-4e67-93b3-28d0d64d629b autoenable=true location=http://psydata.ovgu.de/studyforrest/freesurfer/.git name=mddatasrc type=git timestamp=1455197498.339419s
-ea71d260-a10c-42ce-8864-826598ebc5d0 archive-id=92e65958-4a5a-4c34-a4f4-ee070f7a123b autoenable=true encryption=none externaltype=ora name=inm7-storage push-url=ria+ssh://bulk1.htc.inm7.de/ds/studyforrest/srv type=external url=ria+http://studyforrest.ds.inm7.de timestamp=1619613053.499190048s
-ea71d260-a10c-42ce-8864-826598ebc5d0 archive-id=92e65958-4a5a-4c34-a4f4-ee070f7a123b autoenable=true encryption=none externaltype=ora name=inm7-storage push-url=ria+ssh://bulk1.htc.inm7.de/ds/studyforrest/srv type=external url=ria+https://datapub.fz-juelich.de/studyforrest/studyforrest.ria timestamp=1619762736.979077978s
-fdb6d635-1e66-44c6-9644-08ab5010b108 autoenable=true location=https://gin.g-node.org/studyforrest/visual-areas.git name=gin type=git timestamp=1619764776.262353646s
+ea71d260-a10c-42ce-8864-826598ebc5d0 archive-id=92e65958-4a5a-4c34-a4f4-ee070f7a123b autoenable=true encryption=none externaltype=ora name=inm7-storage push-url=ria+ssh://bulk1.htc.inm7.de/ds/studyforrest/srv type=external url=ria+http://studyforrest.ds.inm7.de timestamp=1620022140.510877816s
 fdb6d635-1e66-44c6-9644-08ab5010b108 autoenable=true location=https://gin.g-node.org/studyforrest/visual-areas.git name=gin type=git timestamp=1620018744.768192901s
