@@ -1,0 +1,103 @@
+# Metadata for DOI registration according to DataCite Metadata Schema 4.1.
+# For detailed schema description see https://doi.org/10.5438/0014
+
+authors:
+  - firstname: Michael
+    lastname: Hanke
+    id: "ORCID:0000-0001-6398-6370"
+
+  - firstname: Falko R.
+    lastname: Kaule
+
+  - firstname: Ayan
+    lastname: Sengupta
+
+  - firstname: J. Swaroop
+    lastname: Guntupalli
+
+  - firstname: Christian
+    lastname: Häusler
+    id: "ORCID:0000-0002-0936-317X"
+
+  - firstname: Michael
+    lastname: Hoffmann
+
+  - firstname: Jörg
+    lastname: Stadler
+
+  - firstname: Adina
+    lastname: Wagner
+    id: "ORCID:0000-0003-2917-3450"
+
+
+title: Localization of higher-level visual ROIs
+
+
+description: |
+  "This dataset is part of studyforrest dataset collection. For all participants
+   in the phase2 extension of the studyforrest dataset, the following visual
+   areas were localized:
+
+   - fusiform face area (FFA)
+   - occipital face area (OFA)
+   - parahippocampal place area (PPA)
+   - extrastriate body area (EBA)
+   - lateral occipital complex (LOC)
+   - early visual cortex (VIS)
+
+   More information on the procedure and the results can be found in:
+
+        Ayan Sengupta, Falko R. Kaule, J. Swaroop Guntupalli, Michael B. Hoffmann,
+        Christian Häusler, Jörg Stadler, Michael Hanke. An extension of the
+        studyforrest dataset for vision research.
+        [http://biorxiv.org/content/early/2016/03/31/046573].
+
+   For further information about the project visit: http://studyforrest.org
+
+   We acknowledge the support of the Combinatorial NeuroImaging Core
+   Facility at the Leibniz Institute for Neurobiology in Magdeburg, and
+   the German federal state of Saxony-Anhalt, Project: Center for
+   Behavioral Brain Sciences. This research was, in part, also supported
+   by the German Federal Ministry of Education and Research (BMBF) as
+   part of a US-German collaboration in computational neuroscience (CRCNS),
+   co-funded by the BMBF and the US National Science Foundation
+   (BMBF 01GQ1112; NSF 1129855). Work on the data-sharing technology
+   employed for this research was supported by US-German CRCNS project,
+   co-funded by the BMBF and the US National Science Foundation
+   (BMBF 01GQ1411; NSF 1429999)."
+
+
+keywords:
+  - Neuroscience
+  - Studyforrest
+
+
+license:
+  name: "Open Data Commons Public Domain Dedication and License (PDDL)"
+  url: "https://opendatacommons.org/licenses/pddl/"
+
+
+funding:
+  - "BMBF, 01GQ1112"
+  - "NSF, 1129855"
+  - "BMBF, 01GQ1411"
+  - "NSF, 1429999"
+
+
+# Related publications. reftype might be: IsSupplementTo, IsDescribedBy, IsReferencedBy.
+# Please provide digital identifier (e.g., DOI) if possible.
+# Add a prefix to the ID, separated by a colon, to indicate the source.
+# Supported sources are: DOI, arXiv, PMID
+# In the citation field, please provide the full reference, including title, authors, journal etc.
+references:
+  - id: "doi:10.1038/sdata.2016.93"
+    reftype: "IsSupplementTo"
+    citation: "Sengupta, A., Kaule, F. R., Guntupalli, J. S., Hoffmann, M. B., Häusler, C., Stadler, J., & Hanke, M. (2016). A studyforrest extension, retinotopic mapping and localization of higher visual areas. Scientific Data, 3, 160093."
+
+
+# Resource type. Default is Dataset, other possible values are Software, Image, Text.
+resourcetype: Dataset
+
+
+# Do not edit or remove the following line
+templateversion: 1.2
